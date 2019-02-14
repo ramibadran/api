@@ -24,7 +24,7 @@ INSTALLATION
 ~~~
 Git clone https://github.com/ramibadran/api.git
 cd api
-cp .env_stg .env (change the variable basd on your configurations)
+cp .env_stg .env (change the variable basd on your configurations) 
 composer install
 php artisan migrate
 php artisan db:seed --class=ClientTableSeeder
