@@ -26,11 +26,12 @@ return [
           2011 => ['customCode'=>'2011','customMessage' => 'Device agent not provided or empty in the header'],
           2012 => ['customCode'=>'2012','customMessage' => 'client not found'],
           2013 => ['customCode'=>'2013','customMessage' => 'There is missing parameter in the request'],
-          2014 => ['customCode'=>'2014','customMessage' => 'client login successfully'],		
+          2014 => ['customCode'=>'2014','customMessage' => 'client login successfully'],
+          2015 => ['customCode'=>'2015','customMessage' => 'empty or invalid parameter'],
  ],
     
  'serviceCode' => [
-        '0' => ['case'=>'bestHotel','api'=>'http://localhost:8080/third_part/best-hotel','method'=>'GET'],
+        '0' => ['case'=>'bestHotel','api'=>'http://localhost:8080/third_part/est-hotels','method'=>'GET'],
         '1' => ['case'=>'crazyHotel','api'=>'http://localhost:8080/third_part/crazy-hotel','method'=>'GET'],
   ],
 ];

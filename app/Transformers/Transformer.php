@@ -17,7 +17,7 @@ class Transformer extends Respond{
 	private $fractal;
 	
 	/**
-	 * @var tags deleted
+	 * @var $statusCode
 	 */
 	public $statusCode; 
 	

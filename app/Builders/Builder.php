@@ -5,6 +5,14 @@ use API\Builders\BestHotelCaller;
 use API\Builders\CrazyHotelCaller;
 use Config;
 
+/**
+ * Class Builders.
+ *
+ * @package API\Builder
+ *
+ * @author Rami Badran <ramibadran_82@gmail.com>
+ */
+
 class Builder{
     public function builder($case,$api,$param,$method='GET'){
         switch ($case) {

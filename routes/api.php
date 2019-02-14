@@ -14,9 +14,8 @@
 
 
 //Route::get('api/v1/hotels', 'API\HotelController@getHotels');
-Route::get('api/v1/hotels', 'API\HotelController@getHotels'); 
 Route::post('api/v1/token',['uses' => 'API\TokenController@token']);
 Route::group(['middleware' => ['jwt.CustomAuth']], function (){
-    //Route::get('api/v1/hotels', 'API\HotelController@getHotels'); 
+    Route::get('api/v1/hotels', 'API\HotelController@getHotels'); 
         
 });

@@ -7,7 +7,7 @@ use Config;
 use API\Utilities\Mongo;
 
 /**
- * Class RequestResponseLogger.
+ * Class Logger.
  *
  * @package API\Utilities
  *
@@ -36,7 +36,6 @@ class Logger {
         Log::info($text);
 	}
 	
-
 	private function log($message,$file) {
 		$myfile = fopen($file, "a+");
 		fwrite($myfile, $message);

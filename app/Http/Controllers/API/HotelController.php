@@ -41,31 +41,47 @@ class HotelController extends Controller{
             $toDate   = $request->toDate;
             $number   = $request->numberOfAdults;
             
-            //user input validation should be here
-            
-            foreach(Config::get('custom.serviceCode') as $key=>$value){
-                $builder     = new Builder();
-                $response    = $builder->builder($value['case'],$value['api'],$request->all(),$value['method']);
-                $responsData = array_merge($responsData,$response);
-            }            
-            
-            //$this->sort($responsData);
-            usort($responsData, function($a, $b) {
-                return $a['rate'] <=> $b['rate'];
-            });
-            
-            if(empty($responsData)){
-                $customError   = Config::get('custom.customMessages')[2002]['customCode'];
-                $customMessage = Config::get('custom.customMessages')[2002]['customMessage'];
-                $statusCode    = HttpResponse::HTTP_OK;
-            }else{
-                $customError   = Config::get('custom.customMessages')[2001]['customCode'];
-                $customMessage = Config::get('custom.customMessages')[2001]['customMessage'];
-                $statusCode    = HttpResponse::HTTP_OK;
+            if(trim($request->city) == '' || !isset($request->city)){
+                $customError   = Config::get('custom.customMessages')[2015]['customCode'];
+                $customMessage = Config::get('custom.customMessages')[2015]['customMessage'];
+                $statusCode    = HttpResponse::HTTP_PRECONDITION_FAILED;
+            }elseif(trim($request->fromDate) == '' || !isset($request->fromDate)){
+                    $customError   = Config::get('custom.customMessages')[2015]['customCode'];
+                    $customMessage = Config::get('custom.customMessages')[2015]['customMessage'];
+                    $statusCode    = HttpResponse::HTTP_PRECONDITION_FAILED;
+            }elseif(trim($request->toDate) == '' || !isset($request->toDate)){
+                $customError   = Config::get('custom.customMessages')[2015]['customCode'];
+                $customMessage = Config::get('custom.customMessages')[2015]['customMessage'];
+                $statusCode    = HttpResponse::HTTP_PRECONDITION_FAILED;
+            }elseif((int)$request->numberOfAdults <= 0){
+                $customError   = Config::get('custom.customMessages')[2015]['customCode'];
+                $customMessage = Config::get('custom.customMessages')[2015]['customMessage'];
+                $statusCode    = HttpResponse::HTTP_PRECONDITION_FAILED;
+            }else{           
+                foreach(Config::get('custom.serviceCode') as $key=>$value){
+                    $builder     = new Builder();
+                    $response    = $builder->builder($value['case'],$value['api'],$request->all(),$value['method']);
+                    if(!empty($response)){
+                        $responsData = array_merge($responsData,$response);
+                    }
+                }            
+                usort($responsData, function($a, $b) {
+                    return $a['rate'] <=> $b['rate'];
+                });
+                
+                if(empty($responsData)){
+                    $customError   = Config::get('custom.customMessages')[2002]['customCode'];
+                    $customMessage = Config::get('custom.customMessages')[2002]['customMessage'];
+                    $statusCode    = HttpResponse::HTTP_NO_CONTENT;
+                }else{
+                    $customError   = Config::get('custom.customMessages')[2001]['customCode'];
+                    $customMessage = Config::get('custom.customMessages')[2001]['customMessage'];
+                    $statusCode    = HttpResponse::HTTP_OK;
+                }
             }
         }catch(Exception $e){
-            $customError   = Config::get('custom.mobileCustomErrors')[2003]['customCode'];
-            $customMessage = Config::get('custom.mobileCustomErrors')[2003]['customMessage'];
+            $customError   = Config::get('custom.customMessages')[2003]['customCode'];
+            $customMessage = Config::get('custom.customMessages')[2003]['customMessage'];
             $statusCode    = HttpResponse::HTTP_SERVICE_UNAVAILABLE;
         }
         
@@ -74,12 +90,6 @@ class HotelController extends Controller{
         $transformer->setCustomCode($customError);
         $transformer->setCustomMessage($customMessage);
         return $transformer->respond('collection');     
-    }
-    
-    private function sort($responsData){
-        usort($responsData, function($a, $b) {
-            return $a['fare'] <=> $b['fare'];
-        });
     }
 }
 

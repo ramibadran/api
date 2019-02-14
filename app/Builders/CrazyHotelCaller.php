@@ -1,6 +1,14 @@
 <?php
 namespace API\Builders;
 
+/**
+ * Class CrazyHotelCaller.
+ *
+ * @package API\Builders
+ *
+ * @author Rami Badran <ramibadran_82@gmail.com>
+ */
+
 final class CrazyHotelCaller extends RestCaller{
     
     public function crazyHotelCaller($url,$query,$method){

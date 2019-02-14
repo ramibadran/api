@@ -1,6 +1,14 @@
 <?php
 namespace API\Builders;
 
+/**
+ * Class BestHotelCaller.
+ *
+ * @package API\Builders
+ *
+ * @author Rami Badran <ramibadran_82@gmail.com>
+ */
+
 final class BestHotelCaller extends RestCaller{
     
     public function bestHotelCaller($url,$query,$method){

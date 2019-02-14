@@ -6,6 +6,15 @@ use GuzzleHttp\Client;
 use League\Flysystem\Exception;
 use API\Utilities\Logger;
 
+/**
+ * Class RestCaller.
+ *
+ * @package API\Builders
+ *
+ * @author Rami Badran <ramibadran_82@gmail.com>
+ */
+
+
 abstract class RestCaller{
 	private $client;
 	private $sslVerify;
