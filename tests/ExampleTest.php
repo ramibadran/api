@@ -13,12 +13,12 @@ class ExampleTest extends TestCase{
     }
     
     public function testGetAllHotelsSuccess(){
-        $response = $this->json('get', '/api/v1/hotels', ['city'=>'AMM','fromDate' => '2019-02-13', 'toDate' => 'test123','numberOfAdults'=>2]);
+        $response = $this->json('get', '/api/v1/hotels', ['city'=>'AMM','fromDate' => '2019-02-13', 'toDate' => '2019-02-14','numberOfAdults'=>2]);
         $response->assertStatus(200);
     }
     
     public function testGetAllHotelsPredefinedConditions(){
-        $response = $this->json('get', '/api/v1/hotels', ['fromDate' => '2019-02-13', 'toDate' => 'test123','numberOfAdults'=>2]);
+        $response = $this->json('get', '/api/v1/hotels', ['fromDate' => '2019-02-13', 'toDate' => '2019-02-14','numberOfAdults'=>2]);
         $response->assertStatus(200);
     }
     
