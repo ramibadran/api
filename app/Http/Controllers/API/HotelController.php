@@ -45,11 +45,11 @@ class HotelController extends Controller{
                 $customError   = Config::get('custom.customMessages')[2015]['customCode'];
                 $customMessage = Config::get('custom.customMessages')[2015]['customMessage'];
                 $statusCode    = HttpResponse::HTTP_PRECONDITION_FAILED;
-            }elseif(trim($request->fromDate) == '' || !isset($request->fromDate)){
+            }elseif(trim($request->fromDate) == '' || !isset($request->fromDate)){//should have date format validation
                     $customError   = Config::get('custom.customMessages')[2015]['customCode'];
                     $customMessage = Config::get('custom.customMessages')[2015]['customMessage'];
                     $statusCode    = HttpResponse::HTTP_PRECONDITION_FAILED;
-            }elseif(trim($request->toDate) == '' || !isset($request->toDate)){
+            }elseif(trim($request->toDate) == '' || !isset($request->toDate)){//should have date format validation
                 $customError   = Config::get('custom.customMessages')[2015]['customCode'];
                 $customMessage = Config::get('custom.customMessages')[2015]['customMessage'];
                 $statusCode    = HttpResponse::HTTP_PRECONDITION_FAILED;
